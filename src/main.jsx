@@ -176,9 +176,27 @@ function Arrow() {
   return <svg className="arrow" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 16 16 4M7 4h9v9" /></svg>
 }
 
+const defaultResponsiveWidths = [640, 1024, 1600]
+
+function optimizedImagePath(src, width) {
+  return `/assets/optimized/v1/${src.replace(/^\/assets\//, '').replace(/\.[^.]+$/, '')}-${width}.webp`
+}
+
+function ResponsiveImage({ src, alt, sizes = '(max-width: 640px) calc(100vw - 28px), (max-width: 1000px) calc(100vw - 40px), 64vw', widths = defaultResponsiveWidths, ...props }) {
+  const availableWidths = src === '/assets/chen-ting-new.jpg' ? [480, 768, 960] : widths
+  const largest = availableWidths.at(-1)
+  return <img
+    src={optimizedImagePath(src, largest)}
+    srcSet={availableWidths.map((width) => `${optimizedImagePath(src, width)} ${width}w`).join(', ')}
+    sizes={sizes}
+    alt={alt}
+    {...props}
+  />
+}
+
 function AtsOverviewScreen() {
   return <div className="ats-html-screen ats-overview-image-screen">
-    <img src="/assets/originals/ats/macbook.png" alt="领猎云招聘系统工作台 MacBook 展示" loading="eager" decoding="async" />
+    <ResponsiveImage src="/assets/originals/ats/macbook.png" alt="领猎云招聘系统工作台 MacBook 展示" loading="lazy" decoding="async" sizes="(max-width: 640px) calc(100vw - 28px), 1200px" />
   </div>
 }
 
@@ -186,7 +204,7 @@ function AtsSpacingScreen() {
   return <div className="ats-html-screen ats-spacing-screen">
     <div className="ats-slide-heading"><h4>间距</h4><span>SPACE DESIGN</span></div>
     <div className="ats-guideline-copy"><b>间距设计</b><p>间距每个部分应该是有意的，包含元素之间的空白区域。项目之间的空间量会创建关系链接，层次结构通过间距关系排列，可区分内容权重关系。</p><b>希克定律</b><p>随着选择数量增加，做出决定会越来越困难。为了提出简化决策的可预测系统，将数值数量保持在最低要求。</p></div>
-    <img className="ats-reference-art ats-spacing-art" src="/assets/originals/ats/spacing-diagram.png" alt="横向与纵向间距设计规范" loading="lazy" decoding="async" />
+    <ResponsiveImage className="ats-reference-art ats-spacing-art" src="/assets/originals/ats/spacing-diagram.png" alt="横向与纵向间距设计规范" loading="lazy" decoding="async" sizes="(max-width: 640px) calc(100vw - 28px), 1100px" />
   </div>
 }
 
@@ -194,14 +212,14 @@ function AtsIconsScreen() {
   return <div className="ats-html-screen ats-icons-screen">
     <div className="ats-slide-heading"><h4>图标规范</h4><span>ICON DESIGN</span></div>
     <div className="ats-guideline-copy"><b>图标设计</b><p>图标能够直接表达操作含义，快速唤起用户认知，从而帮助用户更快地理解操作。</p><b>应用原则</b><p>高效识别—易读性、易识别、高对比；清晰有序—明确性、引导性、方正、概括、表达一致；美观前规范统一—基于几何造型的秩序感、韵律感、情感化。</p></div>
-    <div className="ats-icon-spec"><div className="icon-template"><p>描边（S）：2px　端点（D）：圆角　圆角（R）：2px</p><img src="/assets/originals/ats/icon-template.png" alt="图标描边、端点与圆角绘制模板" loading="lazy" decoding="async" /><small>图标绘制模版</small></div><img className="ats-reference-art ats-icon-art" src="/assets/originals/ats/icon-grid.png" alt="领猎云系统完整图标规范" loading="lazy" decoding="async" /></div>
+    <div className="ats-icon-spec"><div className="icon-template"><p>描边（S）：2px　端点（D）：圆角　圆角（R）：2px</p><ResponsiveImage src="/assets/originals/ats/icon-template.png" alt="图标描边、端点与圆角绘制模板" loading="lazy" decoding="async" widths={[504]} sizes="160px" /><small>图标绘制模版</small></div><ResponsiveImage className="ats-reference-art ats-icon-art" src="/assets/originals/ats/icon-grid.png" alt="领猎云系统完整图标规范" loading="lazy" decoding="async" sizes="(max-width: 640px) 55vw, 700px" /></div>
   </div>
 }
 
 function AtsProcessScreen() {
   return <div className="ats-html-screen ats-process-screen">
     <div className="ats-slide-heading"><h4>推进流程</h4><span>PROMOTING PROCESS</span></div>
-    <img className="ats-reference-art ats-process-art" src="/assets/originals/ats/process-diagram.png" alt="从发现问题到交付方案的推进流程" loading="lazy" decoding="async" />
+    <ResponsiveImage className="ats-reference-art ats-process-art" src="/assets/originals/ats/process-diagram.png" alt="从发现问题到交付方案的推进流程" loading="lazy" decoding="async" sizes="(max-width: 640px) calc(100vw - 28px), 1100px" />
   </div>
 }
 
@@ -210,7 +228,7 @@ function AtsImageScreen({ type }) {
   return <div className={`ats-html-screen ${isComponents ? 'ats-components-screen' : 'ats-data-screen'}`}>
     {!isComponents && <div className="ats-slide-heading"><h4>数据可视化</h4><span>DATA VISUALIZATION</span></div>}
     {!isComponents && <div className="ats-data-copy"><b>对常用图标拆解提炼通用可视化规范，从功能角度进行分类应用到丰富的业务场景中</b><p>图表帮助用户更好地看懂数据。根据数据选择合适的图表展现，把数据的信息传达给用户；并从数据出发，熟悉不同图表的定义、适用场景与优缺点。</p></div>}
-    <img className={`ats-reference-art ${isComponents ? 'ats-components-art' : 'ats-data-art'}`} src={`/assets/originals/ats/${isComponents ? 'reusable-components.png' : 'data-visualization.png'}`} alt={isComponents ? '领猎云高频复用组件总览' : '领猎云数据可视化图表规范'} loading="lazy" decoding="async" />
+    <ResponsiveImage className={`ats-reference-art ${isComponents ? 'ats-components-art' : 'ats-data-art'}`} src={`/assets/originals/ats/${isComponents ? 'reusable-components.png' : 'data-visualization.png'}`} alt={isComponents ? '领猎云高频复用组件总览' : '领猎云数据可视化图表规范'} loading="lazy" decoding="async" sizes="(max-width: 640px) calc(100vw - 28px), 1200px" />
   </div>
 }
 
@@ -232,7 +250,7 @@ function ProjectGallery({ project, detail = false }) {
       const analysisSide = options.analysisSide || (analysisIndex % 2 === 0 ? 'left' : 'right')
       const media = htmlScreen
         ? <AtsHtmlScreen type={htmlScreen} />
-        : <a className={`zoomable${options.scrollPreview ? ' scroll-preview' : ''}`} href={`/assets/originals/${project.id}/${file}`} target="_blank" rel="noreferrer" aria-label={`查看高清大图：${label}`}><img src={`/assets/originals/${project.id}/${file}`} alt={`${project.title} - ${label}`} loading="lazy" decoding="async" /><span>{options.scrollPreview ? '移入自动浏览 · 点击看大图 ↗' : '查看高清大图 ↗'}</span></a>
+        : <a className={`zoomable${options.scrollPreview ? ' scroll-preview' : ''}`} href={`/assets/originals/${project.id}/${file}`} target="_blank" rel="noreferrer" aria-label={`查看高清大图：${label}`}><ResponsiveImage src={`/assets/originals/${project.id}/${file}`} alt={`${project.title} - ${label}`} loading="lazy" decoding="async" fetchPriority="auto" sizes={!detail ? '(max-width: 640px) calc(100vw - 28px), 1200px' : undefined} /><span>{options.scrollPreview ? '移入自动浏览 · 点击看大图 ↗' : '查看高清大图 ↗'}</span></a>
       const analysisPanel = analysis && <div className="screen-analysis"><div><small>PRODUCT ANALYSIS</small><h4>{analysis.title}</h4></div><p>{analysis.text}</p><div className="analysis-points">{analysis.points.map(point => <span key={point}>{point}</span>)}</div></div>
 
       return <figure className={!detail ? 'screen-card featured' : `screen-card${analysis ? ` has-analysis analysis-text-${analysisSide}` : ''}${options.scrollPreview ? ' has-scroll-preview' : ''}${htmlScreen ? ' html-screen-card' : ''}`} key={file}>
@@ -288,7 +306,7 @@ function App() {
     <section className="about shell" id="about">
       <div className="section-tag"><span>01</span><p>PROFILE / ABOUT</p></div>
       <div className="about-grid">
-        <figure className="portrait"><img src="/assets/chen-ting-new.jpg" alt="设计师陈婷彩色个人照片" /><figcaption>NATURAL COLOR PORTRAIT / 2026</figcaption></figure>
+        <figure className="portrait"><ResponsiveImage src="/assets/chen-ting-new.jpg" alt="设计师陈婷彩色个人照片" widths={[480, 768, 960]} sizes="(max-width: 640px) calc(100vw - 28px), 470px" loading="lazy" decoding="async" /><figcaption>NATURAL COLOR PORTRAIT / 2026</figcaption></figure>
         <div className="about-copy">
           <h2>在技术、商业与人之间，<br />寻找<span>清晰而有温度</span>的设计答案。</h2>
           <div className="bio"><p>我擅长独立负责复杂业务线，从用户洞察、交互策略到视觉系统与落地协作，让复杂能力变得可理解、可操作。近年聚焦 AI Native 与 Agent 产品体验。</p><a href="mailto:13120944613@163.com?subject=%E4%BD%9C%E5%93%81%E9%9B%86%E9%A1%B9%E7%9B%AE%E5%90%88%E4%BD%9C%E5%92%A8%E8%AF%A2" aria-label="发送邮件给陈婷">13120944613@163.com <Arrow /></a></div>
