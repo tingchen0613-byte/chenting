@@ -89,10 +89,6 @@ button { font: inherit; }
 .project { padding: 115px 0; border-top: 1px solid var(--line); background: rgba(255,255,255,.7); }
 .project:nth-child(even) { background: #eef6fa; }
 .project-inner { display: grid; grid-template-columns: 14% 31% 1fr; gap: 3%; align-items: start; }
-.project-cpa2 .project-inner { align-items: center; }
-.project-cpa2 .project-copy { align-self: center; }
-.project-cpa2 .single-shot { position: relative; max-height: none; border: 0; background: transparent; box-shadow: none; }
-.project-cpa2 .single-shot img { min-height: 0; max-height: 590px; margin: 0 auto; object-fit: contain; }
 .project-meta { color: #74838f; font-size: 8px; }
 .project-meta p { margin: 18px 0 0; line-height: 1.55; }
 .project-no { display: grid; place-items: center; width: 45px; height: 45px; border: 1px solid #a8b8c4; border-radius: 50%; color: #5d75ff; font-size: 11px; }

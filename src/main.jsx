@@ -1,6 +1,6 @@
 import { StrictMode, useState } from 'react'
 import { createRoot } from 'react-dom/client'
-import './styles.css?v=gallery-restructure-20260813'
+import './styles.css?v=xnurta-expansion-20260813'
 
 const projects = [
   {
@@ -27,12 +27,6 @@ const projects = [
     desc: '用分层数据、方案对比与决策路径承载复杂精装业务，让高密度信息更易读、更易比较、更易执行。',
     tags: ['数据体验', '方案决策', '复杂流程'],
   },
-  {
-    no: '05', id: 'cpa2', type: 'PROJECT MANAGEMENT / B2B',
-    title: 'CPA 2.0 筑道平台', en: 'Real Estate Project Management',
-    desc: '筑道管理平台是一款面向企业级房企设计部的产品，覆盖设计管理、信息共享、成本采购前置与项目闭环管理。通过精简操作路径、优化功能结构和视觉层级，提升跨部门协作效率与状态可见性。',
-    tags: ['项目管理', '可视化看板', '流程重构'],
-  },
 ]
 
 const capabilities = [
@@ -45,13 +39,18 @@ const capabilities = [
 const timeline = [
   ['2022—NOW', 'SPARKX GLOBAL', 'Xnurta AI 广告管理平台、SparkX AI 广告智能助手'],
   ['2021—2022', '华永集团 · 猎查查', '交付中心、领猎云招聘系统与多端体验'],
-  ['2019—2021', '易居中国 · 筑想科技', 'CPA 3.0 精装智选系统、CPA 2.0 筑道平台'],
+  ['2019—2021', '易居中国 · 筑想科技', 'CPA 3.0 精装智选系统与复杂地产数据体验'],
 ]
 
 const projectScreens = {
   xnurta: [
     ['dashboard.jpg', 'Executive Dashboard / AI 经营看板'],
     ['sponsored-ads.jpg', 'Sponsored Ads / 广告活动管理'],
+    ['diagnostic-center.jpg', 'Smart Diagnosis / 智能诊断中心'],
+    ['amc-models.jpg', 'AMC Model Gallery / 营销模型模板'],
+    ['brand-insight.jpg', 'Brand Insight / 品牌数据洞察'],
+    ['keyword-insight.jpg', 'Keyword Insight / 关键词洞察'],
+    ['ai-notifications.jpg', 'AI Notifications / AI 智能通知'],
   ],
   sparkx: [
     ['home.jpg', 'SparkX AI / 智能助手首页'],
@@ -93,7 +92,7 @@ function ProjectGallery({ project, detail = false }) {
     </figure>)}
     </div>
   }
-  return <figure className="cpa2-cover single-shot"><a className="zoomable" href="/assets/originals/cpa2-device-complete.png" target="_blank" rel="noreferrer" aria-label="查看 CPA 2.0 高清登录界面"><img src="/assets/originals/cpa2-device-complete.png" alt="CPA 2.0 筑道平台完整电脑登录界面" loading="lazy" decoding="async" /><span>查看高清大图 ↗</span></a></figure>
+  return null
 }
 
 function App() {
