@@ -1,6 +1,6 @@
 import { StrictMode, useState } from 'react'
 import { createRoot } from 'react-dom/client'
-import './styles.css?v=diagnosis-full-20260813'
+import './styles.css?v=nav-anchor-spacing-20260813'
 
 const projects = [
   {
@@ -47,10 +47,31 @@ const projectScreens = {
     ['dashboard.jpg', 'Executive Dashboard / AI 经营看板'],
     ['sponsored-ads.jpg', 'Sponsored Ads / 广告活动管理'],
     ['diagnostic-center-full.png', 'Smart Diagnosis / 智能诊断中心'],
-    ['amc-models.jpg', 'AMC Model Gallery / 营销模型模板'],
-    ['brand-insight.jpg', 'Brand Insight / 品牌数据洞察'],
-    ['keyword-insight.jpg', 'Keyword Insight / 关键词洞察'],
-    ['ai-notifications.jpg', 'AI Notifications / AI 智能通知'],
+    ['amc-subscribe-analysis.png', 'AMC Model 01 / 订阅省分析模型', {
+      title: '订阅省分析模型',
+      text: '围绕 Subscribe & Save 用户生命周期，将订阅与非订阅人群、复购漏斗和单 ASIN 表现集中呈现，帮助广告主识别留存价值并沉淀可复用的分析模型。',
+      points: ['用户生命周期分层', '订阅转化漏斗', '模型保存与复用'],
+    }],
+    ['amc-audience-labels.png', 'AMC Model 02 / 受众标签分析', {
+      title: '受众标签分析',
+      text: '基于 Amazon DSP 受众标签，结合覆盖规模、广告销售与渗透表现定位高价值及高潜人群，为精细化广告投放和预算分配提供清晰依据。',
+      points: ['高价值人群识别', '多指标气泡分析', '预算与投放优化'],
+    }],
+    ['brand-insight-full.png', 'Brand Insight / 品牌数据洞察', {
+      title: '品牌数据洞察',
+      text: '聚合品牌声量与广告占位数据，通过品牌 SOV 市场份额、竞品趋势对比和多维筛选，帮助广告主识别市场格局变化，持续校准品牌投放策略。',
+      points: ['品牌 SOV 份额', '竞品趋势对比', '多维指标筛选'],
+    }],
+    ['keyword-insight-full.png', 'Keyword Insight / 关键词洞察', {
+      title: '关键词与流量洞察',
+      text: '以关键词 SOV 为核心，将流量来源、份额趋势与投放覆盖集中在同一分析视图中，帮助广告主发现高价值搜索机会，并持续优化自然流量与广告流量结构。',
+      points: ['关键词 SOV', '流量来源分析', '搜索机会识别'],
+    }],
+    ['ai-notifications-full.png', 'AI Notifications / AI 智能通知', {
+      title: '广告运营核心关注',
+      text: '将优先级更新、快速优化、增长机会与目标调整统一聚合，通过风险等级和待办状态帮助运营人员快速定位异常，并从洞察直接进入处理动作。',
+      points: ['运营风险聚合', '优先级与状态管理', '洞察到行动闭环'],
+    }],
   ],
   sparkx: [
     ['home.jpg', 'SparkX AI / 智能助手首页'],
@@ -86,8 +107,9 @@ function ProjectGallery({ project, detail = false }) {
   if (screens) {
     const visibleScreens = detail ? screens.slice(1) : screens.slice(0, 1)
     return <div className={`screen-gallery gallery-${project.id}`}>
-    {visibleScreens.map(([file, label], index) => <figure className={!detail ? 'screen-card featured' : 'screen-card'} key={file}>
+    {visibleScreens.map(([file, label, analysis], index) => <figure className={!detail ? 'screen-card featured' : `screen-card${analysis ? ' has-analysis' : ''}`} key={file}>
       <figcaption><span>{String(index + (detail ? 2 : 1)).padStart(2, '0')}</span><b>{label}</b></figcaption>
+      {analysis && <div className="screen-analysis"><div><small>PRODUCT ANALYSIS</small><h4>{analysis.title}</h4></div><p>{analysis.text}</p><div className="analysis-points">{analysis.points.map(point => <span key={point}>{point}</span>)}</div></div>}
       <a className="zoomable" href={`/assets/originals/${project.id}/${file}`} target="_blank" rel="noreferrer" aria-label={`查看高清大图：${label}`}><img src={`/assets/originals/${project.id}/${file}`} alt={`${project.title} - ${label}`} loading="lazy" decoding="async" /><span>查看高清大图 ↗</span></a>
     </figure>)}
     </div>
@@ -97,6 +119,18 @@ function ProjectGallery({ project, detail = false }) {
 
 function App() {
   const [menuOpen, setMenuOpen] = useState(false)
+  const goToCapabilities = (event) => {
+    event.preventDefault()
+    setMenuOpen(false)
+    window.history.replaceState(null, '', '#capabilities')
+    const align = (behavior = 'auto') => {
+      const target = document.getElementById('capabilities')
+      if (!target) return
+      window.scrollTo({ top: window.scrollY + target.getBoundingClientRect().top - 82, behavior })
+    }
+    align('smooth')
+    ;[250, 700, 1400].forEach(delay => window.setTimeout(() => align(), delay))
+  }
   return <main>
     <header className="nav-wrap">
       <div className="nav shell">
@@ -104,7 +138,7 @@ function App() {
         <nav className={menuOpen ? 'nav-links open' : 'nav-links'}>
           <a href="#about" onClick={() => setMenuOpen(false)}>关于</a>
           <a href="#work" onClick={() => setMenuOpen(false)}>项目</a>
-          <a href="#capabilities" onClick={() => setMenuOpen(false)}>能力</a>
+          <a href="#capabilities" onClick={goToCapabilities}>能力</a>
         </nav>
         <a className="contact-pill" href="#contact">联系我 <Arrow /></a>
         <button className="menu" onClick={() => setMenuOpen(!menuOpen)} aria-label="切换导航">{menuOpen ? '×' : '＋'}</button>
@@ -137,7 +171,7 @@ function App() {
     </section>
 
     <section className="work" id="work">
-      <div className="work-head shell"><div className="section-tag"><span>02</span><p>SELECTED / PROJECTS</p></div><h2>Selected<br /><i>Work.</i></h2><p>按照作品集项目顺序展开。<br />从 AI 产品到复杂企业系统。</p></div>
+      <div className="work-head shell"><div className="section-tag"><span>02</span><p>SELECTED / PROJECTS</p></div><h2>Selected<br /><i>Work.</i></h2><p>从 AI 产品到复杂企业系统。</p></div>
       <div className="project-list">
         {projects.map((project) => <article className={`project project-${project.id}`} key={project.id}>
           <div className="project-inner shell">
