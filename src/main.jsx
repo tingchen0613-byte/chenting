@@ -1,6 +1,6 @@
 import { StrictMode, useState } from 'react'
 import { createRoot } from 'react-dom/client'
-import './styles.css?v=xnurta-expansion-20260813'
+import './styles.css?v=diagnosis-full-20260813'
 
 const projects = [
   {
@@ -46,7 +46,7 @@ const projectScreens = {
   xnurta: [
     ['dashboard.jpg', 'Executive Dashboard / AI 经营看板'],
     ['sponsored-ads.jpg', 'Sponsored Ads / 广告活动管理'],
-    ['diagnostic-center.jpg', 'Smart Diagnosis / 智能诊断中心'],
+    ['diagnostic-center-full.png', 'Smart Diagnosis / 智能诊断中心'],
     ['amc-models.jpg', 'AMC Model Gallery / 营销模型模板'],
     ['brand-insight.jpg', 'Brand Insight / 品牌数据洞察'],
     ['keyword-insight.jpg', 'Keyword Insight / 关键词洞察'],
