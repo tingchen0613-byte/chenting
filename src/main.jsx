@@ -1,6 +1,6 @@
 import { StrictMode, useState } from 'react'
 import { createRoot } from 'react-dom/client'
-import './styles.css?v=complete-portfolio-41-20260813'
+import './styles.css?v=original-assets-20260813'
 
 const projects = [
   {
@@ -8,35 +8,30 @@ const projects = [
     title: '亚马逊 AI 广告管理平台', en: 'Xnurta · Amazon Advertising Intelligence',
     desc: '把经营看板、广告管理、AI 诊断与自动优化整合进统一工作台，帮助跨境卖家从发现问题快速走向执行与验证。',
     tags: ['AI 经营看板', '广告活动管理', '智能诊断', '设计系统'],
-    pages: [3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
   },
   {
     no: '02', id: 'sparkx', type: 'AI PRODUCT / 0—1',
     title: 'SparkX AI', en: '亚马逊广告智能助手',
     desc: '以“意图识别—方案生成—确认执行”重构广告优化流程，让专业广告操作变成可信、可控的自然对话。',
-    tags: ['AI Agent', '对话式工作流', '0—1 产品'], image: '/assets/portfolio/sparkx-flow.jpg',
-    pages: [16, 17, 18, 19, 20, 21],
+    tags: ['AI Agent', '对话式工作流', '0—1 产品'],
   },
   {
     no: '03', id: 'ats', type: 'ENTERPRISE SaaS / RECRUITING',
     title: '领猎云招聘系统', en: 'ATS · Recruitment Management System',
     desc: '围绕招聘顾问的日常任务重组信息架构，把人才、职位、客户与协作流程汇入连续工作台。',
-    tags: ['复杂 B2B', '信息架构', '多角色协作'], image: '/assets/portfolio/ats-28.jpg',
-    pages: [22, 23, 24, 25, 26, 27, 28, 29, 30, 31],
+    tags: ['复杂 B2B', '信息架构', '多角色协作'],
   },
   {
     no: '04', id: 'cpa3', type: 'SMART SELECTION / DATA PRODUCT',
     title: 'CPA 3.0 精装智选系统', en: 'Fine Decoration Decision Platform',
     desc: '用分层数据、方案对比与决策路径承载复杂精装业务，让高密度信息更易读、更易比较、更易执行。',
-    tags: ['数据体验', '方案决策', '复杂流程'], image: '/assets/portfolio/cpa3-33.jpg',
-    pages: [32, 33, 34, 35, 36, 37, 38],
+    tags: ['数据体验', '方案决策', '复杂流程'],
   },
   {
     no: '05', id: 'cpa2', type: 'PROJECT MANAGEMENT / B2B',
     title: 'CPA 2.0 筑道平台', en: 'Real Estate Project Management',
     desc: '梳理地产项目管理中的业务链路与核心指标，通过模块化界面提升协作效率和状态可见性。',
-    tags: ['项目管理', '可视化看板', '流程重构'], image: '/assets/portfolio/cpa2-39.jpg',
-    pages: [40],
+    tags: ['项目管理', '可视化看板', '流程重构'],
   },
 ]
 
@@ -53,31 +48,53 @@ const timeline = [
   ['2019—2021', '易居中国 · 筑想科技', 'CPA 3.0 精装智选系统、CPA 2.0 筑道平台'],
 ]
 
+const projectScreens = {
+  xnurta: [
+    ['dashboard.jpg', 'Executive Dashboard / AI 经营看板'],
+    ['sponsored-ads.jpg', 'Sponsored Ads / 广告活动管理'],
+    ['ai-optimization.jpg', 'AI Optimization / 智能优化中心'],
+    ['ai-campaign.jpg', 'Campaign Optimization / 活动优化'],
+    ['ai-managed-group.jpg', 'Managed Group / 托管组优化'],
+    ['campaign-creation.jpg', 'Campaign Creation / 广告创建'],
+    ['product-management.jpg', 'Product Management / 商品管理'],
+  ],
+  sparkx: [
+    ['home.jpg', 'SparkX AI / 智能助手首页'],
+    ['intent-analysis.jpg', 'Step 01 / 意图分析'],
+    ['advertising-solutions.jpg', 'Step 02 / 广告方案生成'],
+    ['optimization-plans.jpg', 'Step 03 / AI 优化计划'],
+  ],
+  cpa3: [
+    ['home.jpg', 'Home / 精装智选首页'],
+    ['project-map.jpg', 'Project Library / 项目地图'],
+    ['floor-plan.jpg', 'Floor Plan / 户型选择'],
+    ['solution.jpg', 'Solution Library / 方案库'],
+    ['space-config.jpg', 'Space Configuration / 空间配置'],
+    ['component-config.jpg', 'Component Configuration / 部品配置'],
+    ['standard.jpg', 'Decoration Standard / 精装标准'],
+  ],
+}
+
 function Arrow() {
   return <svg className="arrow" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 16 16 4M7 4h9v9" /></svg>
 }
 
-function ProjectVisual({ project }) {
-  if (project.id === 'xnurta') return <div className="xnurta-gallery">
-    <figure className="shot shot-a"><img src="/assets/xnurta-ai-dashboard.jpg" alt="Xnurta AI 经营看板" /></figure>
-    <figure className="shot shot-b"><img src="/assets/xnurta-sponsored-ads.jpg" alt="Xnurta 广告活动管理界面" /></figure>
-    <div className="module-card"><small>AI WORKFLOW</small><b>洞察 → 建议 → 执行</b><span>统一的智能优化闭环</span></div>
-  </div>
-  return <figure className="single-shot"><img src={project.image} alt={`${project.title} 项目设计页面`} /></figure>
-}
-
-function pageSrc(page) {
-  return `/assets/portfolio/pages/page-${String(page).padStart(2, '0')}.jpg`
-}
-
-function PortfolioPages({ pages, title, eager = false }) {
-  return <div className="portfolio-pages" aria-label={`${title} PDF 原稿页面`}>
-    <div className="pages-heading"><p>ORIGINAL PORTFOLIO / COMPLETE PAGES</p><span>{String(pages[0]).padStart(2, '0')}—{String(pages.at(-1)).padStart(2, '0')} / 41</span></div>
-    {pages.map((page, index) => <figure className="pdf-page" key={page}>
-      <figcaption><span>PAGE {String(page).padStart(2, '0')}</span><b>{title}</b></figcaption>
-      <img src={pageSrc(page)} alt={`${title}，作品集第 ${page} 页`} loading={eager && index === 0 ? 'eager' : 'lazy'} decoding="async" />
+function ProjectGallery({ project, detail = false }) {
+  const screens = projectScreens[project.id]
+  if (screens) {
+    const visibleScreens = detail ? screens.slice(1) : screens.slice(0, 1)
+    return <div className={`screen-gallery gallery-${project.id}`}>
+    {visibleScreens.map(([file, label], index) => <figure className={!detail ? 'screen-card featured' : 'screen-card'} key={file}>
+      <figcaption><span>{String(index + (detail ? 2 : 1)).padStart(2, '0')}</span><b>{label}</b></figcaption>
+      <img src={`/assets/originals/${project.id}/${file}`} alt={`${project.title} - ${label}`} loading="lazy" decoding="async" />
     </figure>)}
+    </div>
+  }
+  if (project.id === 'ats') return <div className="ats-showcase">
+    <div className="ats-sidebar"><b>领猎云</b><span>工作台</span><span>人才库</span><span>职位管理</span><span>客户管理</span><span>协作任务</span></div>
+    <div className="ats-main"><div className="ats-top"><div><small>TODAY / OVERVIEW</small><h4>招聘工作台</h4></div><button>＋ 新建职位</button></div><div className="ats-metrics"><div><span>进行中职位</span><b>24</b></div><div><span>新增候选人</span><b>86</b></div><div><span>本周面试</span><b>18</b></div></div><div className="ats-content"><div className="ats-list"><h5>重点职位进展</h5>{['高级产品经理','数据分析师','品牌设计师','前端工程师'].map((name,index)=><p key={name}><i>{String(index+1).padStart(2,'0')}</i><b>{name}</b><span>{[12,8,6,15][index]} 位候选人</span></p>)}</div><div className="ats-funnel"><h5>人才漏斗</h5><i/><i/><i/><small>简历 · 沟通 · 面试 · Offer</small></div></div></div>
   </div>
+  return <figure className="cpa2-cover single-shot"><img src="/assets/portfolio/cpa2-cover.png" alt="CPA 2.0 筑道平台项目首页" loading="lazy" decoding="async" /></figure>
 }
 
 function App() {
@@ -119,7 +136,6 @@ function App() {
         </div>
       </div>
       <div className="timeline">{timeline.map(([year, company, text], index) => <article key={company}><span>0{index + 1}</span><time>{year}</time><h3>{company}</h3><b>UI / UX DESIGNER</b><p>{text}</p></article>)}</div>
-      <PortfolioPages pages={[1, 2]} title="作品集封面与个人介绍" eager />
     </section>
 
     <section className="work" id="work">
@@ -129,12 +145,10 @@ function App() {
           <div className="project-inner shell">
             <div className="project-meta"><span className="project-no">{project.no}</span><p>{project.type}</p></div>
             <div className="project-copy"><h3>{project.title}</h3><p className="project-en">{project.en}</p><p className="project-desc">{project.desc}</p><div className="tags">{project.tags.map(tag => <span key={tag}>{tag}</span>)}</div></div>
-            <div className="project-visual">{project.id === 'cpa2'
-              ? <figure className="single-shot"><img src="/assets/portfolio/cpa2-cover.png" alt="CPA 2.0 筑道平台项目首页" loading="lazy" decoding="async" /></figure>
-              : <ProjectVisual project={project} />}</div>
+            <div className="project-visual"><ProjectGallery project={project} /></div>
           </div>
           {project.id === 'xnurta' && <div className="results shell"><span>PROJECT IMPACT</span><div><b>408%</b><small>广告相关销售额增长</small></div><div><b>63%</b><small>ROAS 增长</small></div><div><b>80–90%</b><small>自动优化任务</small></div><div><b>90%</b><small>报告时间缩短</small></div></div>}
-          <div className="shell"><PortfolioPages pages={project.pages} title={project.title} /></div>
+          {projectScreens[project.id] && <div className="shell project-gallery-wrap"><ProjectGallery project={project} detail /></div>}
         </article>)}
       </div>
     </section>
@@ -142,7 +156,6 @@ function App() {
     <section className="capabilities shell" id="capabilities">
       <div className="cap-head"><div className="section-tag"><span>03</span><p>CAPABILITIES / VALUE</p></div><h2>不止是好看。<br /><span>设计需要解决问题。</span></h2></div>
       <div className="cap-grid">{capabilities.map(([no, title, text]) => <article key={no}><span>{no}</span><i>✦</i><h3>{title}</h3><p>{text}</p></article>)}</div>
-      <PortfolioPages pages={[41]} title="能力总结与自我评价" />
     </section>
 
     <footer className="contact" id="contact">
