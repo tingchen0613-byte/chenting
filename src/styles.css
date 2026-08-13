@@ -91,10 +91,8 @@ button { font: inherit; }
 .project-inner { display: grid; grid-template-columns: 14% 31% 1fr; gap: 3%; align-items: start; }
 .project-cpa2 .project-inner { align-items: center; }
 .project-cpa2 .project-copy { align-self: center; }
-.project-cpa2 .single-shot { max-height: none; }
-.project-cpa2 .single-shot img { min-height: 0; object-fit: contain; }
-.project-cpa2 .single-shot { position: relative; }
-.project-cpa2 .single-shot:after { content: ""; position: absolute; z-index: 2; top: 19%; left: 4.5%; width: 38%; height: 13%; background: #fff; pointer-events: none; }
+.project-cpa2 .single-shot { position: relative; max-height: none; border: 0; background: transparent; box-shadow: none; }
+.project-cpa2 .single-shot img { min-height: 0; max-height: 590px; margin: 0 auto; object-fit: contain; }
 .project-meta { color: #74838f; font-size: 8px; }
 .project-meta p { margin: 18px 0 0; line-height: 1.55; }
 .project-no { display: grid; place-items: center; width: 45px; height: 45px; border: 1px solid #a8b8c4; border-radius: 50%; color: #5d75ff; font-size: 11px; }
@@ -130,6 +128,9 @@ button { font: inherit; }
 .screen-card figcaption span { font: 9px ui-monospace, SFMono-Regular, Menlo, monospace; letter-spacing: .1em; }
 .screen-card figcaption b { font-size: 11px; font-weight: 500; }
 .screen-card img { display: block; width: 100%; height: auto; border: 8px solid #fff; border-radius: 3px; background: #fff; box-shadow: 0 20px 50px rgba(72,99,116,.14); }
+.zoomable { position: relative; display: block; overflow: hidden; }
+.zoomable span { position: absolute; right: 16px; bottom: 16px; padding: 8px 11px; border-radius: 999px; color: #fff; background: rgba(31,48,61,.78); backdrop-filter: blur(9px); font: 9px ui-monospace, monospace; letter-spacing: .04em; opacity: 0; transform: translateY(5px); transition: .25s; }
+.zoomable:hover span { opacity: 1; transform: none; }
 .project-gallery-wrap { margin-top: 82px; padding-top: 30px; border-top: 1px solid var(--line); }
 .ats-showcase { display: grid; grid-template-columns: 150px 1fr; min-height: 510px; overflow: hidden; border: 8px solid #fff; border-radius: 4px; background: #f4f7fa; box-shadow: 0 20px 50px rgba(72,99,116,.14); }
 .ats-sidebar { display: flex; flex-direction: column; gap: 4px; padding: 28px 15px; color: #b9c3cc; background: #344454; }

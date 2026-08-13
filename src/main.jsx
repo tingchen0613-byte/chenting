@@ -30,7 +30,7 @@ const projects = [
   {
     no: '05', id: 'cpa2', type: 'PROJECT MANAGEMENT / B2B',
     title: 'CPA 2.0 筑道平台', en: 'Real Estate Project Management',
-    desc: '梳理地产项目管理中的业务链路与核心指标，通过模块化界面提升协作效率和状态可见性。',
+    desc: '筑道管理平台是一款面向企业级房企设计部的产品，覆盖设计管理、信息共享、成本采购前置与项目闭环管理。通过精简操作路径、优化功能结构和视觉层级，提升跨部门协作效率与状态可见性。',
     tags: ['项目管理', '可视化看板', '流程重构'],
   },
 ]
@@ -86,7 +86,7 @@ function ProjectGallery({ project, detail = false }) {
     return <div className={`screen-gallery gallery-${project.id}`}>
     {visibleScreens.map(([file, label], index) => <figure className={!detail ? 'screen-card featured' : 'screen-card'} key={file}>
       <figcaption><span>{String(index + (detail ? 2 : 1)).padStart(2, '0')}</span><b>{label}</b></figcaption>
-      <img src={`/assets/originals/${project.id}/${file}`} alt={`${project.title} - ${label}`} loading="lazy" decoding="async" />
+      <a className="zoomable" href={`/assets/originals/${project.id}/${file}`} target="_blank" rel="noreferrer" aria-label={`查看高清大图：${label}`}><img src={`/assets/originals/${project.id}/${file}`} alt={`${project.title} - ${label}`} loading="lazy" decoding="async" /><span>查看高清大图 ↗</span></a>
     </figure>)}
     </div>
   }
@@ -94,7 +94,7 @@ function ProjectGallery({ project, detail = false }) {
     <div className="ats-sidebar"><b>领猎云</b><span>工作台</span><span>人才库</span><span>职位管理</span><span>客户管理</span><span>协作任务</span></div>
     <div className="ats-main"><div className="ats-top"><div><small>TODAY / OVERVIEW</small><h4>招聘工作台</h4></div><button>＋ 新建职位</button></div><div className="ats-metrics"><div><span>进行中职位</span><b>24</b></div><div><span>新增候选人</span><b>86</b></div><div><span>本周面试</span><b>18</b></div></div><div className="ats-content"><div className="ats-list"><h5>重点职位进展</h5>{['高级产品经理','数据分析师','品牌设计师','前端工程师'].map((name,index)=><p key={name}><i>{String(index+1).padStart(2,'0')}</i><b>{name}</b><span>{[12,8,6,15][index]} 位候选人</span></p>)}</div><div className="ats-funnel"><h5>人才漏斗</h5><i/><i/><i/><small>简历 · 沟通 · 面试 · Offer</small></div></div></div>
   </div>
-  return <figure className="cpa2-cover single-shot"><img src="/assets/portfolio/cpa2-cover.png" alt="CPA 2.0 筑道平台项目首页" loading="lazy" decoding="async" /></figure>
+  return <figure className="cpa2-cover single-shot"><a className="zoomable" href="/assets/originals/cpa2-device.png" target="_blank" rel="noreferrer" aria-label="查看 CPA 2.0 高清登录界面"><img src="/assets/originals/cpa2-device.png" alt="CPA 2.0 筑道平台登录界面" loading="lazy" decoding="async" /><span>查看高清大图 ↗</span></a></figure>
 }
 
 function App() {
