@@ -1,6 +1,6 @@
 import { StrictMode, useState } from 'react'
 import { createRoot } from 'react-dom/client'
-import './styles.css?v=original-assets-20260813'
+import './styles.css?v=gallery-restructure-20260813'
 
 const projects = [
   {
@@ -52,17 +52,20 @@ const projectScreens = {
   xnurta: [
     ['dashboard.jpg', 'Executive Dashboard / AI 经营看板'],
     ['sponsored-ads.jpg', 'Sponsored Ads / 广告活动管理'],
-    ['ai-optimization.jpg', 'AI Optimization / 智能优化中心'],
-    ['ai-campaign.jpg', 'Campaign Optimization / 活动优化'],
-    ['ai-managed-group.jpg', 'Managed Group / 托管组优化'],
-    ['campaign-creation.jpg', 'Campaign Creation / 广告创建'],
-    ['product-management.jpg', 'Product Management / 商品管理'],
   ],
   sparkx: [
     ['home.jpg', 'SparkX AI / 智能助手首页'],
     ['intent-analysis.jpg', 'Step 01 / 意图分析'],
     ['advertising-solutions.jpg', 'Step 02 / 广告方案生成'],
     ['optimization-plans.jpg', 'Step 03 / AI 优化计划'],
+    ['campaign-creation.jpg', 'Campaign Creation / AI 广告创建'],
+    ['campaign-optimization.jpg', 'Campaign Optimization / AI 活动优化'],
+    ['managed-group.jpg', 'Managed Group / AI 托管组优化'],
+    ['product-management.jpg', 'Product Management / AI 商品管理'],
+  ],
+  ats: [
+    ['candidate-profile.jpg', 'Candidate Profile / 候选人档案'],
+    ['data-dashboard.jpg', 'Recruitment Analytics / 招聘数据分析'],
   ],
   cpa3: [
     ['home.jpg', 'Home / 精装智选首页'],
@@ -90,11 +93,7 @@ function ProjectGallery({ project, detail = false }) {
     </figure>)}
     </div>
   }
-  if (project.id === 'ats') return <div className="ats-showcase">
-    <div className="ats-sidebar"><b>领猎云</b><span>工作台</span><span>人才库</span><span>职位管理</span><span>客户管理</span><span>协作任务</span></div>
-    <div className="ats-main"><div className="ats-top"><div><small>TODAY / OVERVIEW</small><h4>招聘工作台</h4></div><button>＋ 新建职位</button></div><div className="ats-metrics"><div><span>进行中职位</span><b>24</b></div><div><span>新增候选人</span><b>86</b></div><div><span>本周面试</span><b>18</b></div></div><div className="ats-content"><div className="ats-list"><h5>重点职位进展</h5>{['高级产品经理','数据分析师','品牌设计师','前端工程师'].map((name,index)=><p key={name}><i>{String(index+1).padStart(2,'0')}</i><b>{name}</b><span>{[12,8,6,15][index]} 位候选人</span></p>)}</div><div className="ats-funnel"><h5>人才漏斗</h5><i/><i/><i/><small>简历 · 沟通 · 面试 · Offer</small></div></div></div>
-  </div>
-  return <figure className="cpa2-cover single-shot"><a className="zoomable" href="/assets/originals/cpa2-device.png" target="_blank" rel="noreferrer" aria-label="查看 CPA 2.0 高清登录界面"><img src="/assets/originals/cpa2-device.png" alt="CPA 2.0 筑道平台登录界面" loading="lazy" decoding="async" /><span>查看高清大图 ↗</span></a></figure>
+  return <figure className="cpa2-cover single-shot"><a className="zoomable" href="/assets/originals/cpa2-device-complete.png" target="_blank" rel="noreferrer" aria-label="查看 CPA 2.0 高清登录界面"><img src="/assets/originals/cpa2-device-complete.png" alt="CPA 2.0 筑道平台完整电脑登录界面" loading="lazy" decoding="async" /><span>查看高清大图 ↗</span></a></figure>
 }
 
 function App() {
